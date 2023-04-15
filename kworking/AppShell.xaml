@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="kworking.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helper="clr-namespace:kworking.Helpers"
+    xmlns:local="clr-namespace:kworking"
+    xmlns:pages="clr-namespace:kworking.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="True">
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+        Title="Чат"
+        ContentTemplate="{DataTemplate pages:LoginPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="IconFontTypes" Glyph="{x:Static helper:IconFontHelper.Messenger}" Size="50"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent
+        Title="Биржа"
+        ContentTemplate="{DataTemplate pages:StockPage}">
+           <ShellContent.Icon>
+                <FontImageSource FontFamily="IconFontTypes" Glyph="{x:Static helper:IconFontHelper.List_alt}" Size="50"/>
+           </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent
+        Title="Заказы"
+        ContentTemplate="{DataTemplate pages:OrdersPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="IconFontTypes" Glyph="{x:Static helper:IconFontHelper.Add_box}" Size="50"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent
+        Title="Профиль"
+        ContentTemplate="{DataTemplate pages:ProfilePage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="IconFontTypes" Glyph="{x:Static helper:IconFontHelper.Supervised_user_circle}" Size="50"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+</Shell>

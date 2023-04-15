@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="kworking.Controls.MaterialEntry"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:kworking.Controls">
+    <VerticalStackLayout>
+        <Grid>
+            <Border BackgroundColor="Transparent"
+                    Stroke="{StaticResource Primary}"
+                    StrokeShape="RoundRectangle 5"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center">
+                <Border.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="Android" Value="10,0,10,0"></On>
+                    </OnPlatform>
+                </Border.Padding>
+                <controls:BorderlessEntry VerticalOptions="Center"
+                                                HorizontalOptions="Center"
+                                                WidthRequest="200"
+                                                Focused="MEEntry_Focused"
+                                                Unfocused="MEEntry_Unfocused"
+                                                x:Name="MEEntry">
+                </controls:BorderlessEntry>
+            </Border>
+            <Label Text="Enter some text..."
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   x:Name="MELabel"></Label>
+        </Grid>
+    </VerticalStackLayout>
+</ContentView>

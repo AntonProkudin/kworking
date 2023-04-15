@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="kworking.Views.StockPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helper="clr-namespace:kworking.Helpers"
+             xmlns:viewModels="clr-namespace:kworking.ViewModels"
+             Shell.FlyoutBehavior="Disabled"
+             xmlns:controls="clr-namespace:kworking.Controls"
+             NavigatedTo="ContentPage_NavigatedTo"
+             BackgroundColor="Black">
+    <RefreshView Margin="10" IsRefreshing="{Binding IsRefreshing}" HorizontalOptions="Center">
+        <Grid RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="30" />
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <controls:AdvanceMaterialEntry
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                                    PlaceholderText="Поиск по категории:"
+                                    Text=""/>
+            <Border Grid.Row="3" BackgroundColor="Transparent" Stroke="Transparent">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20,20,20,20"/>
+                </Border.StrokeShape>
+            <CollectionView 
+                    ItemsSource="{Binding Orders}"
+                    Grid.Row="3"
+                    VerticalScrollBarVisibility="Never">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                            <Frame BorderColor="Transparent" BackgroundColor="Transparent" HasShadow="False">
+                                <HorizontalStackLayout Padding="0,0,0,0">
+                                    <HorizontalStackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=OpenChatCommand, Source={RelativeSource AncestorType={x:Type viewModels:StockViewModel}}}" CommandParameter="{Binding FromUserId}" />
+                                    </HorizontalStackLayout.GestureRecognizers>
+                                    <StackLayout>
+                                        <Label
+                        Margin="10,10,0,0"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        TextColor="White"
+                        Text="{Binding Name}"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Start"/>
+                                        <Label
+                        Margin="10,10,0,0"
+                        TextColor="Gray"
+                        FontSize="10"
+                        Text="{Binding Description}"
+                        VerticalOptions="Start" 
+                        HorizontalOptions="Start"/>
+                                        <Grid Margin="0,0,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                            Margin="10,10,0,10"
+                        TextColor="#228E5D"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="{Binding Category}"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Start"/>
+                                            <Label
+                        TextColor="White"    
+                        Grid.Column="1"    
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="{Binding Price}"
+                        VerticalOptions="Center" 
+                            HorizontalOptions="Start"/>
+
+                                        </Grid>
+                                        <Line
+                                            Stroke="LightGray"
+                                        StrokeThickness="1"
+                                        X1="0"
+                                        X2="350"
+                                        Y1="10"
+                                        Y2="10" />
+                                    </StackLayout>
+                                </HorizontalStackLayout>
+                            </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            </Border>
+
+        </Grid>
+
+    </RefreshView>
+</ContentPage>

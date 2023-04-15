@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="kworking.Views.ChatPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:kworking.ViewModels"
+             xmlns:helper="clr-namespace:kworking.Helpers"
+             xmlns:local="clr-namespace:kworking.Views"
+             xmlns:controls="clr-namespace:kworking.Controls"
+             BackgroundColor="Black"
+             NavigatedTo="ContentPage_NavigatedTo">
+    <RefreshView Margin="10" IsRefreshing="{Binding IsRefreshing}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="5" />
+                <RowDefinition />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+            <Grid  Grid.Row="1">
+                <Frame BorderColor="Transparent" BackgroundColor="Transparent">
+                    <StackLayout Orientation="Horizontal">
+                        <Frame CornerRadius="90" WidthRequest="60" HeightRequest="60" BorderColor="Transparent" BackgroundColor="Transparent">
+                            <Image      HeightRequest="54"
+                                        HorizontalOptions="Center"
+                                        Source="{Binding FriendInfo.AvatarSourceName}"
+                                        WidthRequest="54" />
+                        </Frame>
+                        <Label
+                        Margin="10,0,0,0"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        TextColor="White"
+                        Text="Вы общаетесь с:"
+                        VerticalOptions="Center" />
+                        <Label
+                        Margin="10,0,0,0"
+                        FontAttributes="Bold"
+                        FontSize="15"
+                            TextColor="#2BAD72"
+                        Text="{Binding FriendInfo.UserName}"
+                        VerticalOptions="Center" />
+                    </StackLayout>
+                </Frame>
+                <StackLayout
+                    HorizontalOptions="End"
+                    Orientation="Horizontal"
+                    VerticalOptions="Center">
+                    <Button
+                        Margin="10,0,0,0"
+                        BackgroundColor="{StaticResource Primary}"
+                        CornerRadius="45"
+                        HeightRequest="32"
+                        WidthRequest="32">
+                        <Button.ImageSource>
+                            <FontImageSource
+                                FontFamily="IconFontTypes"
+                                Glyph="{x:Static helper:IconFontHelper.Camera_alt}"
+                                Size="18" />
+                        </Button.ImageSource>
+                    </Button>
+
+                    <Button
+                        Margin="10,0,10,0"
+                        BackgroundColor="{StaticResource Primary}"
+                        CornerRadius="45"
+                        HeightRequest="32"
+                        WidthRequest="32">
+                        <Button.ImageSource>
+                            <FontImageSource
+                                FontFamily="IconFontTypes"
+                                Glyph="{x:Static helper:IconFontHelper.Edit}"
+                                Size="18" />
+                        </Button.ImageSource>
+                    </Button>
+                </StackLayout>
+            </Grid>
+            <CollectionView
+                Grid.Row="3"
+                Margin="0,10,0,10"
+                ItemsSource="{Binding Messages}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <VerticalStackLayout.HorizontalOptions>
+                                <MultiBinding Converter="{StaticResource FromUserIdToHorizontalOptionConverter}">
+                                    <Binding Path="FromUserId" />
+                                    <Binding Path="ToUserId" Source="{RelativeSource AncestorType={x:Type viewModel:ChatViewModel}}" />
+                                </MultiBinding>
+                            </VerticalStackLayout.HorizontalOptions>
+                            <Label
+                                TextColor="#2BAD72"
+                                Margin="5,0,5,0"
+                                FontSize="11"
+                                HorizontalOptions="{Binding HorizontalOptions, Source={RelativeSource AncestorType={x:Type VerticalStackLayout}}}"
+                                Text="{Binding SendDateTime, StringFormat='{0:HH:mm}'}" />
+
+                            <Frame  HasShadow="False" BackgroundColor="Transparent">
+                                <Frame.BorderColor>
+                                        <MultiBinding Converter="{StaticResource FromUserIdToBackgroudColorConverter}">
+                                            <Binding Path="FromUserId" />
+                                            <Binding Path="ToUserId" Source="{RelativeSource AncestorType={x:Type viewModel:ChatViewModel}}" />
+                                        </MultiBinding>
+                                    </Frame.BorderColor>
+                                    <StackLayout BackgroundColor="Transparent" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+                                        <Label
+                                            TextColor="White"
+                                    FontSize="12"
+                                    Text="{Binding Content}"
+                                     />
+                                    </StackLayout>
+                                </Frame>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+
+                <controls:AdvanceMaterialEntry HorizontalOptions="Center"
+                                    PlaceholderText="Введите сообщение:"
+                                    Text="{Binding Message}"/>
+
+                <Button
+                    Grid.Column="1"
+                    BackgroundColor="#2BAD72"
+                    Command="{Binding SendMessageCommand}"
+                    CornerRadius="45"
+                    HeightRequest="32"
+                    WidthRequest="32">
+                    <Button.ImageSource>
+                        <FontImageSource
+                            FontFamily="IconFontTypes"
+                            Glyph="{x:Static helper:IconFontHelper.Send}"
+                            Size="18" />
+                    </Button.ImageSource>
+                </Button>
+            </Grid>
+        </Grid>
+    </RefreshView>
+</ContentPage>

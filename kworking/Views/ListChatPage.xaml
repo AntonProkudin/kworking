@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="kworking.Views.ListChatPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helper="clr-namespace:kworking.Helpers"
+    xmlns:viewModels="clr-namespace:kworking.ViewModels"
+    NavigatedTo="ContentPage_NavigatedTo"
+    Shell.FlyoutBehavior="Disabled"
+    BackgroundColor="Black">
+    <ContentPage.IconImageSource>
+        <FontImageSource
+            FontFamily="IconFontTypes"
+            Glyph="{x:Static helper:IconFontHelper.Messenger}"
+            Size="20"/>
+    </ContentPage.IconImageSource>
+    <RefreshView Margin="10" IsRefreshing="{Binding IsRefreshing}">
+        <Grid RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <StackLayout Orientation="Horizontal">
+                    <Frame CornerRadius="90" HeightRequest="50" WidthRequest="50" BackgroundColor="Black" BorderColor="Black">
+                            <Image
+                        HeightRequest="40"
+                        Source="{Binding UserInfo.AvatarSourceName}"
+                        VerticalOptions="Center"
+                        WidthRequest="40" 
+                        Aspect="AspectFill"/>
+                        </Frame>
+                        <Label
+                        Margin="10,0,0,0"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        FontSize="20"
+                        Text="Здраствуйте,"
+                        VerticalOptions="Center" />
+                    <Label
+                        TextColor="#228E5D"
+                        Margin="10,0,0,0"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="{Binding UserInfo.UserName}"
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </Grid>
+            <Border Stroke="Transparent" BackgroundColor="Transparent" Grid.Row="4">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20,20,20,20"/>
+                </Border.StrokeShape>
+                <CollectionView 
+                    ItemsSource="{Binding LastestMessages}"
+                    Grid.Row="4"
+                    VerticalScrollBarVisibility="Never">
+                    <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="5" BackgroundColor="Transparent" BorderColor="Transparent" Margin="0,0,0,0">
+                            <HorizontalStackLayout Padding="0,0,0,0">
+                                    <HorizontalStackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=OpenChatPageCommand, Source={RelativeSource AncestorType={x:Type viewModels:ListChatViewModel}}}" CommandParameter="{Binding UserFriendInfo.Id}" />
+                                    </HorizontalStackLayout.GestureRecognizers>
+                                    <Grid HeightRequest="54" WidthRequest="58">
+                                        <Frame CornerRadius="90" WidthRequest="60" HeightRequest="60" BackgroundColor="Transparent" BorderColor="Transparent">
+                                    <Image 
+                                        HeightRequest="54"
+                                        HorizontalOptions="Center"
+                                        Source="{Binding UserFriendInfo.AvatarSourceName}"
+                                        WidthRequest="54" />
+                                </Frame>
+                                <Image
+                                    Source="resources/Images/online.png"
+                                        HeightRequest="100"
+                                        HorizontalOptions="Start"
+                                        IsVisible="{Binding UserFriendInfo.IsOnline}"
+                                        VerticalOptions="Start"
+                                        WidthRequest="100" />
+                            </Grid>
+                                <StackLayout
+                                    Margin="10,5,0,0"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        TextColor="#2BAD72"
+                                        FontAttributes="Bold"
+                                        FontSize="17"
+                                        HorizontalOptions="Start"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding UserFriendInfo.UserName}"
+                                        VerticalOptions="Center" />
+
+                                    <Label
+                                        TextColor="White"
+                                        FontSize="12"
+                                        HorizontalOptions="Start"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding Content}"
+                                        VerticalOptions="Center" />
+                                    <Label          FontSize="10"
+                                                    TextColor="White"
+                                            Text="{Binding UserFriendInfo.LastLoginTime}"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="End"
+                                                    Margin="180,0,0,0"/>
+                                        <Line
+                                            Stroke="#228E5D"
+                                        StrokeThickness="1"
+                                        X1="0"
+                                        X2="220"
+                                        Y1="10"
+                                        Y2="10" />
+                                    </StackLayout>
+                            </HorizontalStackLayout>
+                            </Frame>
+                    </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+
+        </Grid>
+
+    </RefreshView>
+</ContentPage>

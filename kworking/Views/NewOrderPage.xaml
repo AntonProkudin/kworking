@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="kworking.Views.NewOrderPage"
+             xmlns:helper="clr-namespace:kworking.Helpers"
+             xmlns:viewModels="clr-namespace:kworking.ViewModels"
+             xmlns:controls="clr-namespace:kworking.Controls"
+             Shell.FlyoutBehavior="Disabled"
+             BackgroundColor="Black">
+    <Grid RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Border WidthRequest="50" BackgroundColor="Transparent" Stroke="#2BAD72" StrokeThickness="2">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="90,90,90,90"/>
+                </Border.StrokeShape>
+                <Button
+                    Grid.Column="1"
+                    BackgroundColor="#2BAD72"
+                    Command="{Binding NewOrdersCommand}"
+                    CornerRadius="45"
+                    HeightRequest="32"
+                    WidthRequest="32">
+                    <Button.ImageSource>
+                        <FontImageSource
+                            FontFamily="IconFontTypes"
+                            Glyph="{x:Static helper:IconFontHelper.Add_box}"
+                            Color="Black"
+                            Size="18" />
+                    </Button.ImageSource>
+                </Button>
+            </Border>
+        </Grid>
+        <VerticalStackLayout Grid.Row="3">
+            <controls:AdvanceMaterialEntry HorizontalOptions="Center"
+                                    PlaceholderText="Название:"
+                                    Margin="0,0,0,0"
+                                    Text="{Binding Name}"/>
+            <controls:AdvanceMaterialEntry HorizontalOptions="Center"
+                                    PlaceholderText="Описание:"
+                                           Margin="0,30,0,0"
+                                    Text="{Binding Description}"/>
+            <controls:AdvanceMaterialEntry HorizontalOptions="Center"
+                                    PlaceholderText="Категория:"
+                                           Margin="0,30,0,0"
+                                    Text="{Binding Category}"/>
+            <controls:AdvanceMaterialEntry HorizontalOptions="Center"
+                                    PlaceholderText="Прайс:"
+                                           Margin="0,30,0,0"
+                                    Keyboard="Numeric"
+                                    Text="{Binding Price}"/>
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>

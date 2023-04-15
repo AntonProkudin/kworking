@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="kworking.Views.ProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helper="clr-namespace:kworking.Helpers"
+    xmlns:viewModels="clr-namespace:kworking.ViewModels"
+    NavigatedTo="ContentPage_NavigatedTo"
+    xmlns:controls="clr-namespace:kworking.Controls"
+    Shell.FlyoutBehavior="Disabled"
+    BackgroundColor="Black">
+    <RefreshView Margin="10" IsRefreshing="{Binding IsRefreshing}">
+        <StackLayout>
+            <Frame CornerRadius="90" WidthRequest="300" HeightRequest="300" Margin="0,0,0,0" HorizontalOptions="Center" BackgroundColor="Transparent">
+                <Image
+                        HeightRequest="300"
+                        Source="{Binding UserInfo.AvatarSourceName}"
+                        VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                        WidthRequest="300" 
+                        Aspect="AspectFit"/>
+            </Frame>
+            <StackLayout Grid.Row="1">
+                    <Label
+                        TextColor="White"
+                        Margin="0,10,0,0"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="{Binding UserInfo.UserName}"
+                        VerticalOptions="Center" 
+                            HorizontalOptions="Center"/>
+                <controls:AdvanceMaterialEntry HorizontalOptions="Center"
+                                               Margin="0,10,0,0"
+                                    PlaceholderText="Напишите о себе:"
+                                    Text=""/>
+                </StackLayout>
+        </StackLayout>
+
+    </RefreshView>
+</ContentPage>

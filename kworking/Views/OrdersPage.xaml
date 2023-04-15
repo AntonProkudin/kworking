@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="kworking.Views.OrdersPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helper="clr-namespace:kworking.Helpers"
+    xmlns:viewModels="clr-namespace:kworking.ViewModels"
+    Shell.FlyoutBehavior="Disabled"
+    NavigatedTo="ContentPage_NavigatedTo"
+    BackgroundColor="Black">
+    <RefreshView Margin="10" IsRefreshing="{Binding IsRefreshing}" HorizontalOptions="Center">
+        <Grid RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="30" />
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Border WidthRequest="50" BackgroundColor="Transparent" Stroke="#2BAD72" StrokeThickness="2">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="90,90,90,90"/>
+                    </Border.StrokeShape>
+                    <Button
+                    Grid.Column="1"
+                    BackgroundColor="#2BAD72"
+                    Command="{Binding NewOrderCommand}"
+                    CornerRadius="45"
+                    HeightRequest="32"
+                    WidthRequest="32">
+                        <Button.ImageSource>
+                            <FontImageSource
+                            FontFamily="IconFontTypes"
+                            Glyph="{x:Static helper:IconFontHelper.Add_box}"
+                            Color="Black"
+                            Size="18" />
+                        </Button.ImageSource>
+                    </Button>
+                </Border>
+            </Grid>
+            <Border Grid.Row="3" BackgroundColor="Transparent" Stroke="Transparent">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20,20,20,20"/>
+                </Border.StrokeShape>
+                <CollectionView 
+                    ItemsSource="{Binding Orders}"
+                    x:Name="MyCollectionViews"
+                    Grid.Row="3"
+                    VerticalScrollBarVisibility="Never">
+                <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="Transparent" BackgroundColor="Transparent" Margin="0,0,0,0">
+                                <HorizontalStackLayout>
+                                    <VerticalStackLayout>
+                                        <Button 
+                                        HorizontalOptions="End"
+                                        VerticalOptions="End"
+                                        HeightRequest="30"
+                                         BackgroundColor="Transparent">
+                                            <Button.ImageSource>
+                                                <FontImageSource
+                                              FontFamily="IconFontTypes"
+                                              Glyph="{x:Static helper:IconFontHelper.Note}"
+                                              Color="#2BAD72"
+                                              Size="25" />
+                                            </Button.ImageSource>
+                                        </Button>
+                                        <Button Text="Remove" WidthRequest="100" HorizontalOptions="Start"
+                                                Command="{Binding Path=BindingContext.DeleteOrderCommand, Source={x:Reference MyCollectionViews}}"
+                                                CommandParameter="{Binding Id}"/>
+                                    </VerticalStackLayout>
+                                    <StackLayout>
+                                        <Label
+                        Text="{Binding Id}"/>
+                                        <Label
+                        Margin="10,10,0,0"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        TextColor="White"
+                        Text="{Binding Name}"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Start"/>
+                                        <Label
+                        Margin="10,10,0,0"
+                        TextColor="Gray"
+                        FontSize="10"
+                        Text="{Binding Description}"
+                        VerticalOptions="Start" 
+                        HorizontalOptions="Start"/>
+                                        <Grid Margin="0,0,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                            Margin="10,10,0,10"
+                        TextColor="#2BAD72"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="{Binding Category}"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Start"/>
+                                            <Label
+                        TextColor="Black"    
+                        Grid.Column="1"    
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="{Binding Price}"
+                        VerticalOptions="Center" 
+                            HorizontalOptions="Start"/>
+
+                                        </Grid>
+                                        <Line
+                                            Stroke="#2BAD72"
+                                        StrokeThickness="1"
+                                        X1="0"
+                                        X2="250"
+                                        Y1="0"
+                                        Y2="0" />
+                                    </StackLayout>
+                                </HorizontalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+</Border>
+
+        </Grid>
+
+    </RefreshView>
+</ContentPage>
