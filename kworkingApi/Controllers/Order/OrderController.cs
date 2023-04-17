@@ -1,5 +1,6 @@
 ﻿using kworkingApi.Controllers.Message;
 using Microsoft.AspNetCore.Authorization;
+using System.Xml;
 using AuthorizeAttribute = kworkingApi.Helpers.AuthorizeAttribute;
 
 namespace kworkingApi.Controllers.Order;
@@ -44,22 +45,22 @@ public class OrderController : Controller
         await _orderFunction.AddOrder(request.FromUserId,request.Name,request.Description,request.Category,request.Price);
     }
 
-   //   [HttpDelete("{id:int}")]
-   //   public async Task<ActionResult> Delete([FromBody] int OrderId)
-   //   {
-   //     var response = new OrderAddResponse
-   //     {
-   //       StatusCode = await _orderFunction.DeleteOrder(OrderId)
-   //     };
-   //     return Ok(response);
-   //   }
-      [HttpPost("Delete")]
-      public async Task<ActionResult> Delete([FromBody] int OrderId)
-      {
+    //   [HttpDelete("{id:int}")]
+    //   public async Task<ActionResult> Delete([FromBody] int OrderId)
+    //   {
+    //     var response = new OrderAddResponse
+    //     {
+    //       StatusCode = await _orderFunction.DeleteOrder(OrderId)
+    //     };
+    //     return Ok(response);
+    //   }
+    [HttpPost("Delete")]
+    public async Task<ActionResult> Delete([FromBody] int OrderId)
+    {
         var response = new OrderAddResponse
         {
-          StatusCode = await _orderFunction.DeleteOrder(OrderId)
+            StatusCode = await _orderFunction.DeleteOrder(OrderId)
         };
         return Ok(response);
-      }
+    }
 }

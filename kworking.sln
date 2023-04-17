@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kworking", "kworking\kworking.csproj", "{64825B69-F4C1-4704-BB60-C87B87C5C83B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kworkingApi", "kworkingApi\kworkingApi.csproj", "{A8137441-12B9-4D19-A1BD-127246A1A90E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kworkingApi", "kworkingApi\kworkingApi.csproj", "{A8137441-12B9-4D19-A1BD-127246A1A90E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxmoxSharp", "..\..\..\Desktop\ProxmoxSharp-master\ProxmoxSharp\ProxmoxSharp.csproj", "{456F1F33-80AD-4BC7-8F04-6A1493453D8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{A8137441-12B9-4D19-A1BD-127246A1A90E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8137441-12B9-4D19-A1BD-127246A1A90E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8137441-12B9-4D19-A1BD-127246A1A90E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{456F1F33-80AD-4BC7-8F04-6A1493453D8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{456F1F33-80AD-4BC7-8F04-6A1493453D8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{456F1F33-80AD-4BC7-8F04-6A1493453D8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{456F1F33-80AD-4BC7-8F04-6A1493453D8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,7 @@ public class DevHttpsConnectionHelper
     public DevHttpsConnectionHelper(int sslPort)
     {
         SslPort = sslPort;
-        DevServerRootUrl = FormattableString.Invariant($"https://1df3-95-25-68-91.ngrok-free.app");
+        DevServerRootUrl = FormattableString.Invariant($"https://8609-95-25-68-91.ngrok-free.app");
         LazyHttpClient = new Lazy<HttpClient>(() => new HttpClient(GetPlatformMessageHandler()));
     }
 

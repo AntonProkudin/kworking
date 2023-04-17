@@ -60,6 +60,9 @@
 	  <None Remove="Resources\Images\LineBackGround.png" />
 	  <None Remove="Resources\Images\man.png" />
 	  <None Remove="Resources\Images\man.svg" />
+	  <None Remove="Resources\Images\mess.jpg" />
+	  <None Remove="Resources\Images\mess2.jpg" />
+	  <None Remove="Resources\Images\mess3.jpg" />
 	  <None Remove="Resources\Images\online.png" />
 	</ItemGroup>
 
