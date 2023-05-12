@@ -20,19 +20,22 @@
                         Aspect="AspectFit"/>
             </Frame>
             <StackLayout Grid.Row="1">
-                    <Label
-                        TextColor="White"
-                        Margin="0,10,0,0"
-                        FontAttributes="Bold"
-                        FontSize="20"
-                        Text="{Binding UserInfo.UserName}"
-                        VerticalOptions="Center" 
-                            HorizontalOptions="Center"/>
-                <controls:AdvanceMaterialEntry HorizontalOptions="Center"
-                                               Margin="0,10,0,0"
-                                    PlaceholderText="Напишите о себе:"
-                                    Text=""/>
-                </StackLayout>
+                <Button
+                    Grid.Column="1"
+                    BackgroundColor="#2BAD72"
+                    Command="{Binding TakePhotoCommand}"
+                    CornerRadius="45"
+                    HeightRequest="32"
+                    WidthRequest="32">
+                    <Button.ImageSource>
+                        <FontImageSource
+                            FontFamily="IconFontTypes"
+                            Glyph="{x:Static helper:IconFontHelper.Add_box}"
+                            Color="Black"
+                            Size="18" />
+                    </Button.ImageSource>
+                </Button>
+            </StackLayout>
         </StackLayout>
 
     </RefreshView>

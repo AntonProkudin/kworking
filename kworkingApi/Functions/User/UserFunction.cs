@@ -62,7 +62,14 @@ public class UserFunction : IUserFunction
             LastLoginTime = entity.LastLoginTime
         };
     }
-
+    public async void PutPhotoById(int id, string path)
+    {
+        var entity = _kworkingContext.TblUsers
+            .Where(x => x.Id == id)
+            .FirstOrDefault();
+        entity.AvatarSourceName = path;
+        _kworkingContext.SaveChanges();
+    }
 
     private bool VertifyPassword(string enteredPassword, byte[] storedSalt, string storedPassword)
     {
